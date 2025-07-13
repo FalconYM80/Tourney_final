@@ -1,0 +1,304 @@
+.player-registration-container {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+.player-registration-wrapper {
+  width: 100%;
+  max-width: 520px;
+  position: relative;
+  animation: playerRegFadeIn 0.6s ease-out;
+}
+
+@keyframes playerRegFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.player-reg-back-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  color: #6c757d;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 8px 0;
+  margin-bottom: 24px;
+  transition: color 0.2s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.player-reg-back-button:hover {
+  color: #495057;
+}
+
+.player-reg-back-icon {
+  font-size: 16px;
+}
+
+.player-registration-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  border: 1px solid #e9ecef;
+  animation: playerRegCardSlideUp 0.7s ease-out 0.2s both;
+}
+
+@keyframes playerRegCardSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.player-registration-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.player-registration-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.player-registration-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.player-reg-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.player-reg-form-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #495057;
+  margin-bottom: 4px;
+}
+
+.player-reg-form-input {
+  padding: 16px;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #2c3e50;
+  background-color: #ffffff;
+  transition: all 0.3s ease;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+}
+
+.player-reg-form-input::placeholder {
+  color: #adb5bd;
+  font-weight: 400;
+}
+
+.player-reg-form-input:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+  transform: translateY(-1px);
+}
+
+.player-reg-form-input:hover:not(:focus) {
+  border-color: #ced4da;
+}
+
+.player-reg-date-input-wrapper {
+  position: relative;
+}
+
+.player-reg-date-input {
+  padding-right: 50px;
+}
+
+.player-reg-date-icon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6c757d;
+  font-size: 20px;
+  pointer-events: none;
+}
+
+.player-reg-file-upload-wrapper {
+  position: relative;
+}
+
+.player-reg-file-input {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.player-reg-file-upload-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 32px 16px;
+  border: 2px dashed #e9ecef;
+  border-radius: 12px;
+  background-color: #f8f9fa;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #6c757d;
+}
+
+.player-reg-file-upload-label:hover {
+  border-color: #4f46e5;
+  background-color: #f0f4ff;
+  color: #4f46e5;
+}
+
+.player-reg-upload-icon {
+  font-size: 24px;
+}
+
+.player-reg-upload-text {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.player-reg-create-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 16px 24px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 8px;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+}
+
+.player-reg-create-button:hover:not(:disabled) {
+  background-color: #c82333;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(220, 53, 69, 0.3);
+}
+
+.player-reg-create-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.player-reg-create-button:disabled {
+  background-color: #f8b2b7;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.player-reg-signin-prompt {
+  text-align: center;
+  margin-top: 16px;
+}
+
+.player-reg-signin-text {
+  font-size: 14px;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.player-reg-signin-link {
+  background: none;
+  border: none;
+  color: #4f46e5;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.player-reg-signin-link:hover {
+  color: #4338ca;
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .player-registration-container {
+    padding: 16px;
+  }
+  
+  .player-registration-card {
+    padding: 32px 24px;
+  }
+  
+  .player-registration-title {
+    font-size: 24px;
+  }
+  
+  .player-reg-form-input,
+  .player-reg-create-button {
+    padding: 14px 16px;
+  }
+  
+  .player-reg-file-upload-label {
+    padding: 24px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .player-registration-card {
+    padding: 24px 20px;
+  }
+  
+  .player-registration-title {
+    font-size: 22px;
+  }
+  
+  .player-registration-form {
+    gap: 16px;
+  }
+}
+
+/* Focus management for accessibility */
+.player-registration-container *:focus-visible {
+  outline: 2px solid #4f46e5;
+  outline-offset: 2px;
+}
+
+/* Date input styling for different browsers */
+.player-reg-date-input::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  cursor: pointer;
+}
+
+.player-reg-date-input::-moz-focus-inner {
+  border: 0;
+}

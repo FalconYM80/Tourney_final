@@ -1,0 +1,19 @@
+/* General body styles to remove default margin and set a base font */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: #f8f9fa;
+  color: #343a40;
+}
+
+.organizer-home {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* On smaller screens, the main layout is not needed. */
+@media (max-width: 992px) {
+  .organizer-home {
+    flex-direction: column;
+  }
+}
