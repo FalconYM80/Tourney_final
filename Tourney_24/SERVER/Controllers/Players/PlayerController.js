@@ -498,4 +498,23 @@ const searchFixtureByTeams = async (req, res) => {
   }
 };
 
-export { signUp,verifyEmailWithOTP,login, checkPlayerAuthorization, getCurrentPlayer, logOut, getAllPublicTournaments, getTournamentEvents, getTournamentById, getAllOrganizationsPublic, getTournamentsByOrganization, getEventFixtures, updateFixtureScore, searchFixtureByTeams };
+// Check if all emails are registered
+const checkEmailsRegistered = async (req, res) => {
+  try {
+    const { emails } = req.body;
+    if (!Array.isArray(emails) || emails.length === 0) {
+      return res.json({ success: false, message: 'No emails provided.' });
+    }
+    const found = await PlayerModel.find({ email: { $in: emails } }).select('email');
+    const foundEmails = found.map(p => p.email);
+    const missing = emails.filter(e => !foundEmails.includes(e));
+    if (missing.length > 0) {
+      return res.json({ success: false, message: `Not registered: ${missing.join(', ')}` });
+    }
+    return res.json({ success: true });
+  } catch (err) {
+    return res.json({ success: false, message: 'Server error during email check.' });
+  }
+};
+
+export { signUp,verifyEmailWithOTP,login, checkPlayerAuthorization, getCurrentPlayer, logOut, getAllPublicTournaments, getTournamentEvents, getTournamentById, getAllOrganizationsPublic, getTournamentsByOrganization, getEventFixtures, updateFixtureScore, searchFixtureByTeams, checkEmailsRegistered };

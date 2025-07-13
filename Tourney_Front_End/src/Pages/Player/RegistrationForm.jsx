@@ -132,6 +132,38 @@ const RegistrationForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Full form validation before payment
+    const validationErrors = validate();
+    setErrors(validationErrors);
+    const hasErrors = validationErrors.some(error => Object.keys(error).length > 0);
+    if (hasErrors) {
+      toast.error('Please fix all form errors before proceeding to payment.');
+      return;
+    }
+
+    // Validate team name for group registration before payment
+    if (members.length > 1 && (!teamName || !teamName.trim())) {
+      toast.error('Team name is required for group registration.');
+      return;
+    }
+
+    // Backend check: are all emails registered?
+    try {
+      const emailCheckRes = await fetch(`${backend_URL}/api/player/checkEmailsRegistered`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ emails: members.map(m => m.email) })
+      });
+      const emailCheckData = await emailCheckRes.json();
+      if (!emailCheckData.success) {
+        toast.error(emailCheckData.message || 'Some emails are not registered.');
+        return;
+      }
+    } catch (err) {
+      toast.error('Could not verify emails. Please try again.');
+      return;
+    }
+
     // Razorpay Payment Integration
     const amount = entryFee * members.length * 100; // Razorpay expects paise
     if (amount > 0) {
@@ -214,7 +246,7 @@ const RegistrationForm = () => {
           {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ teamName, members: membersPayload }),
+            body: JSON.stringify({ teamName, members: membersPayload, entry: 'online' }),
             credentials: 'include',
           }
         );
@@ -236,7 +268,8 @@ const RegistrationForm = () => {
         mobile: member.mobile,
         academyName: member.academyName,
         feesPaid: false, // or true if you want to mark as paid
-        ...member.customFieldValues
+        ...member.customFieldValues,
+        entry: 'online'
       };
       try {
         const res = await fetch(

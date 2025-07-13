@@ -2,7 +2,7 @@ import express from 'express';
 const router = express.Router();
 
 
-import { signUp,verifyEmailWithOTP,login, checkPlayerAuthorization, getCurrentPlayer, logOut, getAllPublicTournaments, getTournamentEvents, getTournamentById, getAllOrganizationsPublic, getTournamentsByOrganization, getEventFixtures, updateFixtureScore, searchFixtureByTeams } from '../../Controllers/Players/PlayerController.js';
+import { signUp,verifyEmailWithOTP,login, checkPlayerAuthorization, getCurrentPlayer, logOut, getAllPublicTournaments, getTournamentEvents, getTournamentById, getAllOrganizationsPublic, getTournamentsByOrganization, getEventFixtures, updateFixtureScore, searchFixtureByTeams, checkEmailsRegistered } from '../../Controllers/Players/PlayerController.js';
 
 import { userAuthMiddleware } from '../../Middlewares/jwtAuth.js';
 
@@ -38,5 +38,8 @@ router.get('/fixtures/search', searchFixtureByTeams);
 
 // PATCH: Update fixture score
 router.patch('/fixtures/:fixtureId', updateFixtureScore);
+
+// POST: Check if emails are registered
+router.post('/checkEmailsRegistered', checkEmailsRegistered);
 
 export default router;

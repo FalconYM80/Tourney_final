@@ -790,6 +790,7 @@ const createIndividual = async (req, res) => {
       dateAndTime: new Date().toISOString(),
       customFields:
         Object.keys(customFields).length > 0 ? customFields : undefined,
+      entry: typeof req.body.entry === 'string' ? req.body.entry : 'offline',
     });
 
     tournament.participantsIndividual.push(newIndividual._id);
@@ -924,7 +925,7 @@ const createGroupTeam = async (req, res) => {
     const newTeam = await TeamGroup.create({
       teamName,
       members: FinalMembers,
-      entry: "offline",
+      entry: 'offline',
       event: event.name,
       eventId,
       tournamentId: TournamentId,
@@ -948,7 +949,8 @@ const createGroupTeam = async (req, res) => {
     console.log("Error in Creating group Team ", error);
     return res.json({
       success: false,
-      message: "Error in Creating Players (Group)",
+      message: `Error in Creating Players (Group): ${error.message}`,
+      error: error.stack,
     });
   }
 };
